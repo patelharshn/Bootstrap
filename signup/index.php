@@ -69,7 +69,7 @@
                                                 ?>
                                                     <input type="text" id="" class="form-control" name="uname" value="<?php echo $_SESSION['uname']; ?>" required>
                                                 <?php
-                                                unset($_SESSION['uname']);
+                                                    unset($_SESSION['uname']);
                                                 } else {
                                                 ?>
                                                     <input type="text" id="" class="form-control" name="uname" value="" required>
@@ -89,7 +89,7 @@
                                                 ?>
                                                     <input type="text" id="form3Example1c" class="form-control" name="shop" value="<?php echo $_SESSION['shop']; ?>" required>
                                                 <?php
-                                                unset($_SESSION['shop']);
+                                                    unset($_SESSION['shop']);
                                                 } else {
                                                 ?>
                                                     <input type="text" id="form3Example1c" class="form-control" value="" name="shop" required>
@@ -109,7 +109,7 @@
                                                 ?>
                                                     <input type="email" id="form3Example3c" class="form-control" value="<?php echo $_SESSION['mail']; ?>" name="mail" required />
                                                 <?php
-                                                unset($_SESSION['mail']);
+                                                    unset($_SESSION['mail']);
                                                 } else {
                                                 ?>
                                                     <input type="email" id="form3Example3c" class="form-control" value="" name="mail" required />
@@ -129,7 +129,7 @@
                                                 ?>
                                                     <input type="password" id="form3Example4c" class="form-control" value="<?php echo $_SESSION['pass']; ?>" name="pass" required />
                                                 <?php
-                                                unset($_SESSION['pass']);
+                                                    unset($_SESSION['pass']);
                                                 } else {
                                                 ?>
                                                     <input type="password" id="form3Example4c" class="form-control" value="" name="pass" required />
@@ -147,9 +147,9 @@
                                                 <?php
                                                 if (isset($_SESSION['cpass'])) {
                                                 ?>
-                                                    <input type="password" id="form3Example4cd" class="form-control" value="<?php echo $_SESSION['cpass'];?>" name="cpass" required />
+                                                    <input type="password" id="form3Example4cd" class="form-control" value="<?php echo $_SESSION['cpass']; ?>" name="cpass" required />
                                                 <?php
-                                                unset($_SESSION['cpass']);
+                                                    unset($_SESSION['cpass']);
                                                 } else {
                                                 ?>
                                                     <input type="password" id="form3Example4cd" class="form-control" value="" name="cpass" required />
@@ -187,7 +187,6 @@
 
     <!-- Script CDN Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 </body>
 
 </html>
