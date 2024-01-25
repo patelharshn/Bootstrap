@@ -23,18 +23,19 @@ if (isset($_POST['btn_reg'])) {
         $row = mysqli_fetch_row($result);
 
         if ($row <= 0) {
-            $query_insert = "insert into user(shopname,email,username,password) values('$shop','$mail','$uname','$hashpassord')";
-            $result = mysqli_query($con, $query_insert);
-            $row = mysqli_affected_rows($con);
+            header("Location: http://localhost/bootstrap/OTP/index.php");
+            // $query_insert = "insert into user(shopname,email,username,password) values('$shop','$mail','$uname','$hashpassord')";
+            // $result = mysqli_query($con, $query_insert);
+            // $row = mysqli_affected_rows($con);
 
-            if ($row >= 0) {
-                session_start();
-                $_SESSION['message'] = "Register Successfully!";
-                $_SESSION['icon'] = "success";
-                $_SESSION['title'] = "Success";
-                header("Location: http://localhost/bootstrap/signup/index.php");
-                exit();
-            }
+            // if ($row >= 0) {
+            //     session_start();
+            //     $_SESSION['message'] = "Register Successfully!";
+            //     $_SESSION['icon'] = "success";
+            //     $_SESSION['title'] = "Success";
+            //     header("Location: http://localhost/bootstrap/signup/index.php");
+            //     exit();
+            // }
         } else {
             session_start();
             $_SESSION['message'] = "Mail Is Alredy Register";
