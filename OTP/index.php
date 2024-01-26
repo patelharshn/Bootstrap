@@ -1,3 +1,13 @@
+<?php
+session_start();
+require('C:\xampp\htdocs\Bootstrap\conn.php');
+
+if (!isset($_SESSION['mail'])) {
+    header("location: http://localhost/bootstrap/signup/index.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,73 +18,15 @@
 
     <link rel="shortcut icon" href="favicon.png">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <!-- CDN Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
-    <?php
-    session_start();
-
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
-
-    if (!isset($_SESSION['mail'])) {
-        header("location: http://localhost/bootstrap/signup/index.php");
-    }
-
-    require 'C:\xampp\htdocs\Bootstrap\PHPMailer\PHPMailer.php';
-    require 'C:\xampp\htdocs\Bootstrap\PHPMailer\SMTP.php';
-    require 'C:\xampp\htdocs\Bootstrap\PHPMailer\Exception.php';
-
-    $umail = $_SESSION['mail'];
-
-    $otp = rand(1111, 9999);
-    $mail = new PHPMailer(true);
-    try {
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'hp004086@gmail.com';
-        $mail->Password   = 'jkofloznkmebgcnv';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465;
-
-        $mail->setFrom('hp004086@gmail.com', 'IMS');
-        $mail->addAddress($umail);
-
-        $mail->isHTML(true);
-        $mail->Subject = 'IMS(Inventory Managment System)';
-        $mail->Body    = 'Your Email Varification OTP is ' . $otp . ' </b><br><br> This mail is send by the HARSH';
-
-        if ($mail->send()) {
-    ?>
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success...',
-                    text: 'Otp Send Successfully!',
-                });
-            </script>
-        <?php
-        }
-    } catch (Exception $e) {
-        ?>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Error...',
-                text: '<?php echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"; ?>',
-            });
-        </script>
-    <?php
-    }
-
-    ?>
-
     <div class="container">
         <header>
             <i class="bx bxs-check-shield"></i>
@@ -93,49 +45,65 @@
     </div>
     </div>
 </body>
-<script>
-    const inputs = document.querySelectorAll("input"),
-        button = document.querySelector("button");
-
-    inputs.forEach((input, index1) => {
-        input.addEventListener("keyup", (e) => {
-            const currentInput = input,
-                nextInput = input.nextElementSibling,
-                prevInput = input.previousElementSibling;
-
-            if (currentInput.value.length > 1) {
-                currentInput.value = "";
-                return;
-            }
-
-            if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
-                nextInput.removeAttribute("disabled");
-                nextInput.focus();
-            }
-
-            if (e.key === "Backspace") {
-                inputs.forEach((input, index2) => {
-                    if (index1 <= index2 && prevInput) {
-                        input.setAttribute("disabled", true);
-                        input.value = "";
-                        prevInput.focus();
-                    }
-                });
-            }
-            if (!inputs[3].disabled && inputs[3].value !== "") {
-                button.classList.add("active");
-                return;
-            }
-            button.classList.remove("active");
-        });
-    });
-
-    window.addEventListener("load", () => inputs[0].focus());
-</script>
 
 </html>
 
 <?php
+
 if (isset($_POST['btn_verify'])) {
+    $u_otp = $_POST['1'] . $_POST['2'] . $_POST['3'] . $_POST['4'];
+    $otp = $_SESSION['otp'];
+    if ($otp == $u_otp) {
+?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success...',
+                text: 'Otp Verify Successfully!',
+            });
+        </script>
+        <?php
+
+        $shop = $_SESSION['shop'];
+        $mail = $_SESSION['mail'];
+        $uname = $_SESSION['uname'];
+        $pass = $_SESSION['pass'];
+
+        $hashpassord = password_hash($pass, PASSWORD_DEFAULT);
+
+        $query_insert = "insert into user(shopname,email,username,password) values('$shop','$mail','$uname','$hashpassord')";
+        $result = mysqli_query($con, $query_insert);
+        $row = mysqli_affected_rows($con);
+
+        if ($row >= 0) {
+        ?>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success...',
+                    text: 'Registration Successfully!',
+                });
+            </script>
+        <?php
+            unset($_SESSION['shop']);
+            unset($_SESSION['mail']);
+            unset($_SESSION['uname']);
+            unset($_SESSION['pass']);
+            unset($_SESSION['otp']);
+            $_SESSION['message'] = "SignUp Successfully...Please Login With Email And Password!";
+            header("Location: http://localhost/bootstrap/login/index.php");
+            exit();
+        }
+    } else {
+        ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'Incorrect OTP please enter valid OTP',
+            });
+        </script>
+<?php
+    }
 }
 ?>

@@ -20,22 +20,34 @@
     session_start();
     if (isset($_SESSION['message']) && $_SESSION['message'] != '') {
         if (isset($_SESSION['message']) && $_SESSION['message'] == 'Login Successfully!') {
-            setcookie("email", $_SESSION['email'], time() + 3600 * 24 ,"/");
-            setcookie("pass", $_SESSION['pass'], time() + 3600 * 24,"/");
+            setcookie("email", $_SESSION['email'], time() + 3600 * 24, "/");
+            setcookie("pass", $_SESSION['pass'], time() + 3600 * 24, "/");
+    ?>
+            <script>
+                Swal.fire({
+                    icon: '<?php echo $_SESSION['icon']; ?>',
+                    title: '<?php echo $_SESSION['title']; ?>',
+                    text: '<?php echo $_SESSION['message']; ?>',
+                }).then(function() {
+                    window.location.href = "http://localhost/bootstrap/index.php";
+                });
+            </script>
+            <?php
+            unset($_SESSION['message']);
+        } elseif (isset($_SESSION['message']) == "SignUp Successfully...Please Login With Email And Password!") { {
             ?>
                 <script>
                     Swal.fire({
-                        icon: '<?php echo $_SESSION['icon']; ?>',
-                        title: '<?php echo $_SESSION['title']; ?>',
+                        icon: 'success',
+                        title: 'Success...',
                         text: '<?php echo $_SESSION['message']; ?>',
-                     }).then(function() {
-                        window.location.href = "http://localhost/bootstrap/index.php";
                     });
                 </script>
             <?php
-            unset($_SESSION['message']);
+                unset($_SESSION['message']);
+            }
         } else {
-        ?>
+            ?>
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
@@ -66,7 +78,7 @@
                                                 <?php
                                                 if (isset($_SESSION['email'])) {
                                                 ?>
-                                                    <input type="email" id="form3Example3c" name="mail" value="<?php echo $_SESSION['email'];?>" class="form-control" required />
+                                                    <input type="email" id="form3Example3c" name="mail" value="<?php echo $_SESSION['email']; ?>" class="form-control" required />
                                                 <?php
                                                     unset($_SESSION['email']);
                                                 } else {

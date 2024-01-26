@@ -1,6 +1,10 @@
 <?php
 include('C:\xampp\htdocs\Bootstrap\conn.php');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 if (isset($_POST['btn_reg'])) {
     $uname = $_POST['uname'];
     $shop = $_POST['shop'];
@@ -23,19 +27,58 @@ if (isset($_POST['btn_reg'])) {
         $row = mysqli_fetch_row($result);
 
         if ($row <= 0) {
-            header("Location: http://localhost/bootstrap/OTP/index.php");
-            // $query_insert = "insert into user(shopname,email,username,password) values('$shop','$mail','$uname','$hashpassord')";
-            // $result = mysqli_query($con, $query_insert);
-            // $row = mysqli_affected_rows($con);
 
-            // if ($row >= 0) {
-            //     session_start();
-            //     $_SESSION['message'] = "Register Successfully!";
-            //     $_SESSION['icon'] = "success";
-            //     $_SESSION['title'] = "Success";
-            //     header("Location: http://localhost/bootstrap/signup/index.php");
-            //     exit();
-            // }
+            require 'C:\xampp\htdocs\Bootstrap\PHPMailer\PHPMailer.php';
+            require 'C:\xampp\htdocs\Bootstrap\PHPMailer\SMTP.php';
+            require 'C:\xampp\htdocs\Bootstrap\PHPMailer\Exception.php';
+
+            $umail = $_SESSION['mail'];
+
+            $otp = rand(1111, 9999);
+            session_start();
+            $_SESSION['otp'] = $otp;
+            $mail = new PHPMailer(true);
+            try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'hp004086@gmail.com';
+                $mail->Password   = 'jkofloznkmebgcnv';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port       = 465;
+
+                $mail->setFrom('hp004086@gmail.com', 'IMS');
+                $mail->addAddress($umail);
+
+                $mail->isHTML(true);
+                $mail->Subject = 'IMS(Inventory Managment System)';
+                $mail->Body    = 'Your Email Varification OTP is ' . $otp . ' </b><br><br> This mail is send by the HARSH';
+
+                if ($mail->send()) {
+?>
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success...',
+                            text: 'Otp Send Successfully!',
+                        });
+                    </script>
+                <?php
+                }
+            } catch (Exception $e) {
+                ?>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error...',
+                        text: '<?php echo "OTP could not be sent. Please Check your internet connection or enter valid email ID" ?>',
+                    });
+                </script>
+<?php
+
+            }
+
+            header("Location: http://localhost/bootstrap/OTP/index.php");
         } else {
             session_start();
             $_SESSION['message'] = "Mail Is Alredy Register";
