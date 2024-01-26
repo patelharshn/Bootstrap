@@ -100,7 +100,7 @@ if (isset($_POST['btn_verify'])) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error...',
-                text: 'Incorrect OTP please enter valid OTP',
+                text: 'Incorrect OTP...Please enter valid OTP',
             });
         </script>
 <?php

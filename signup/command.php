@@ -79,6 +79,7 @@ if (isset($_POST['btn_reg'])) {
             }
 
             header("Location: http://localhost/bootstrap/OTP/index.php");
+            exit();
         } else {
             session_start();
             $_SESSION['message'] = "Mail Is Alredy Register";
