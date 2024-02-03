@@ -2,11 +2,11 @@
 ob_start();
 require_once('navbar/index.php');
 
-session_start();
-if (!isset($_COOKIE['email']) && !isset($_COOKIE['pass'])) {
-    header("Location: ./login/index.php");
-    exit;
-}
+// session_start();
+// if (!isset($_COOKIE['email']) && !isset($_COOKIE['pass'])) {
+//     header("Location: ./login/index.php");
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>
