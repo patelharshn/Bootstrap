@@ -76,26 +76,30 @@ if (isset($_POST['btn_verify'])) {
         $row = mysqli_affected_rows($con);
 
         if ($row >= 0) {
+            // 
         ?>
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success...',
-                    text: 'Registration Successfully!',
-                });
+            // <script>
+                //         Swal.fire({
+                //             icon: 'success',
+                //             title: 'Success...',
+                //             text: 'Registration Successfully!',
+                //         });
+                //     
             </script>
-        <?php
-            unset($_SESSION['shop']);
-            unset($_SESSION['mail']);
-            unset($_SESSION['uname']);
-            unset($_SESSION['pass']);
-            unset($_SESSION['otp']);
-            $_SESSION['message'] = "SignUp Successfully...Please Login With Email And Password!";
-            header("Location: http://localhost/bootstrap/login/index.php");
-            exit();
-        }
-    } else {
-        ?>
+            // <?php
+                unset($_SESSION['shop']);
+                unset($_SESSION['mail']);
+                unset($_SESSION['uname']);
+                unset($_SESSION['pass']);
+                unset($_SESSION['otp']);
+                $_SESSION['message'] = "SignUp Successfully...Please Login With Email And Password!";
+                $_SESSION['icon'] = "success";
+                $_SESSION['title'] = "Success...";
+                header("Location: http://localhost/bootstrap/login/index.php");
+                exit();
+            }
+        } else {
+                ?>
         <script>
             Swal.fire({
                 icon: 'error',
@@ -104,6 +108,6 @@ if (isset($_POST['btn_verify'])) {
             });
         </script>
 <?php
+        }
     }
-}
 ?>

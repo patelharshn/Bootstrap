@@ -32,27 +32,26 @@
                     window.location.href = "http://localhost/bootstrap/index.php";
                 });
             </script>
-            <?php
+        <?php
             unset($_SESSION['message']);
-        } elseif (isset($_SESSION['message']) == "SignUp Successfully...Please Login With Email And Password!") { {
-            ?>
-                <script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success...',
-                        text: '<?php echo $_SESSION['message']; ?>',
-                    });
-                </script>
-            <?php
-                unset($_SESSION['message']);
-            }
-        } else {
-            ?>
+        } elseif (isset($_SESSION['message']) == "SignUp Successfully...Please Login With Email And Password!") {
+        ?>
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
                     title: '<?php echo $_SESSION['title']; ?>',
-                    text: '<?php echo $_SESSION['message'] ?>',
+                    text: '<?php echo $_SESSION['message']; ?>',
+                });
+            </script>
+        <?php
+            unset($_SESSION['message']);
+        } else {
+        ?>
+            <script>
+                Swal.fire({
+                    icon: '<?php echo $_SESSION['icon']; ?>',
+                    title: '<?php echo $_SESSION['title']; ?>',
+                    text: '<?php echo $_SESSION['message']; ?>',
                 });
             </script>
     <?php
