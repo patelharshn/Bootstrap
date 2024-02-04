@@ -54,3 +54,60 @@ if (isset($_POST['btn_product_add'])) {
         }
     }
 }
+
+
+if (isset($_POST['btn_product_edit'])) {
+    $umail = $_POST['u_email'];
+    $p_id = $_POST['p_id'];
+    $pname = $_POST['p_name'];
+    $qty = $_POST['p_qty'];
+    $mos = $_POST['p_mos'];
+
+    session_start();
+
+    $query_edit = "update product set product_name='$pname',qty='$qty',typeofsell='$mos' where id='$p_id'";
+    $result = mysqli_query($con, $query_edit);
+    $row = mysqli_affected_rows($con);
+
+    if ($row > 0) {
+        // echo "Update Product!!";
+        $_SESSION['icon'] = "success";
+        $_SESSION['title'] = "Success...";
+        $_SESSION['message'] = "Product Update Successfully!";
+        header("Location: http://localhost/bootstrap/product/index.php");
+        exit();
+    } else {
+        echo "Not Update Product.....";
+        $_SESSION['icon'] = "error";
+        $_SESSION['title'] = "Error...";
+        $_SESSION['message'] = "Product Not Update...";
+        header("Location: http://localhost/bootstrap/product/index.php");
+        exit();
+    }
+}
+
+
+if (isset($_POST['yes_btn'])) {
+    $delete_id = $_POST['delete_p_id'];
+
+    session_start();
+
+    $query_p_id = "delete from product where id='$delete_id'";
+    $result = mysqli_query($con, $query_p_id);
+    $row = mysqli_affected_rows($con);
+    if ($row > 0) {
+        // echo "Product Deleted!";
+        $_SESSION['icon'] = "success";
+        $_SESSION['title'] = "Success...";
+        $_SESSION['delete_message'] = "Product Deleted Successfully!";
+        header("Location: http://localhost/bootstrap/product/index.php");
+        exit();
+    } else {
+        // echo "Product Not Delete";
+        $_SESSION['icon'] = "error";
+        $_SESSION['title'] = "Error...";
+        $_SESSION['delete_message'] = "Product Not Deleted...";
+        header("Location: http://localhost/bootstrap/product/index.php");
+        exit();
+    }
+}
