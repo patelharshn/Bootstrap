@@ -28,6 +28,9 @@ if ($row >= 0) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -266,7 +269,7 @@ if ($row >= 0) {
                         <div class="card-header">
                             <h4>Product
                                 <div class="float-end">
-                                    <input class="form-control-sm" style="margin-right: 20px;" type="text" placeholder="Search">
+                                    <!-- <input class="form-control-lg" style="margin-right: 20px;" type="text" placeholder="Search"> -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                         Add Product
                                     </button>
@@ -275,7 +278,7 @@ if ($row >= 0) {
                         </div>
                         <div class="card-body">
 
-                            <table class="table table-bordered table-striped">
+                            <table id="table_data_search" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -312,6 +315,8 @@ if ($row >= 0) {
     </div>
     <!-- Table End -->
 
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -342,6 +347,18 @@ if ($row >= 0) {
 
                 // console.log(data);
                 $('#d_id').val(data[0]);
+            });
+
+            $('#table_data_search').DataTable({
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search",
+                }
             });
         });
     </script>
