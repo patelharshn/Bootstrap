@@ -26,8 +26,11 @@
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['message']; ?>',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    toast: true,
+                    position: "top",
                 }).then(function() {
                     window.location.href = "http://localhost/bootstrap/index.php";
                 });
@@ -39,8 +42,11 @@
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['message']; ?>',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true,
+                    position: "top",
                 });
             </script>
         <?php
@@ -50,8 +56,11 @@
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['message']; ?>',
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true,
+                    position: "top",
                 });
             </script>
     <?php

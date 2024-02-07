@@ -61,10 +61,11 @@ if ($row >= 0) {
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['product_message']; ?>',
-                }).then(function() {
-                    location.reload();
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true,
+                    position: "top",
                 });
             </script>
         <?php
@@ -74,8 +75,11 @@ if ($row >= 0) {
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['product_message']; ?>',
+                    showConfirmButton: false,
+                    timer: 2700,
+                    toast: true,
+                    position: "top",
                 });
             </script>
         <?php
@@ -90,10 +94,11 @@ if ($row >= 0) {
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['message']; ?>',
-                }).then(function() {
-                    location.reload();
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true,
+                    position: "top",
                 });
             </script>
         <?php
@@ -103,10 +108,11 @@ if ($row >= 0) {
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['message']; ?>',
-                }).then(function() {
-                    location.reload();
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true,
+                    position: "top",
                 });
             </script>
         <?php
@@ -120,10 +126,11 @@ if ($row >= 0) {
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['delete_message']; ?>',
-                }).then(function() {
-                    location.reload();
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true,
+                    position: "top",
                 });
             </script>
         <?php
@@ -133,10 +140,11 @@ if ($row >= 0) {
             <script>
                 Swal.fire({
                     icon: '<?php echo $_SESSION['icon']; ?>',
-                    title: '<?php echo $_SESSION['title']; ?>',
                     text: '<?php echo $_SESSION['delete_message']; ?>',
-                }).then(function() {
-                    location.reload();
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true,
+                    position: "top",
                 });
             </script>
     <?php
