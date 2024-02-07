@@ -52,7 +52,6 @@ if (isset($_POST['btn_reg'])) {
 
                 $mail->isHTML(true);
                 $mail->Subject = 'IMS(Inventory Managment System) email verification';
-                // $otp
                 $mail->Body    = "<div style='font-family: Helvetica,Arial,sans-serif;min-width:700px;overflow:auto;line-height:2'>
                 <div style='margin:50px auto;width:600px;padding:20px 0'>
                   <div style='border-bottom:1px solid #eee'>
