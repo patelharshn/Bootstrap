@@ -14,7 +14,7 @@ $email = $_COOKIE['email'];
 $query_uid = "select * from user where email='$email'";
 $result = mysqli_query($con, $query_uid);
 $row = mysqli_fetch_row($result);
-if ($row >= 0) {
+if ($row > 0) {
     $u_id = $row[0];
     $shop = $row[1];
     $email = $row[2];
@@ -22,6 +22,10 @@ if ($row >= 0) {
 } else {
     echo "User ID Not found";
 }
+
+$profile_details = "select * from profile where user_id='$row[0]'";
+$result_profile = mysqli_query($con, $profile_details);
+$row_profile = mysqli_fetch_row($result_profile);
 
 
 if (isset($_POST['update_btn'])) {
@@ -95,7 +99,17 @@ if (isset($_POST['update_btn'])) {
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row box">
                 <div class="col-md-3 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="btn btn-primary btn-file">Browse<input type="file" name="profileimg" required></span><span class="font-weight-bold"><?php echo $username; ?></span><span class="text-black-50"><?php echo $email; ?></span><span> </span></div>
+                    <?php
+                    if (isset($fname)) {
+                    ?>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="../Images/<?php echo $path ?>"><br><span class="btn btn-primary btn-file">Browse<input type="file" name="profileimg" required></span><span class="font-weight-bold"><?php echo $username; ?></span><span class="text-black-50"><?php echo $email; ?></span><span> </span></div>
+                    <?php
+                    } else {
+                    ?>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><br><span class="btn btn-primary btn-file">Browse<input type="file" name="profileimg" required></span><span class="font-weight-bold"><?php echo $username; ?></span><span class="text-black-50"><?php echo $email; ?></span><span> </span></div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="col-md-5 border-right">
                     <div class="p-3 py-5">
@@ -106,10 +120,10 @@ if (isset($_POST['update_btn'])) {
                             <div class="col-md-12"><label class="labels">Name <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="uname" placeholder="Name" value="<?php echo $username; ?>" required></div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Mobile Number <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="phone" minlength="10" maxlength="10" placeholder="Enter Mobile Number" value="" required></div>
+                            <div class="col-md-12"><label class="labels">Mobile Number <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="phone" minlength="10" maxlength="10" placeholder="Enter Mobile Number" value="<?php echo $row_profile[1] ?>" required></div>
                             <div class="col-md-12 mt-2"><label class="labels">Shop Name <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="shop" placeholder="Enter Shop Name" value="<?php echo $shop; ?>" required></div>
-                            <div class="col-md-12 mt-2"><label class="labels">Pincode <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="pincode" minlength="6" maxlength="6" placeholder="Enter Pincode" value="" required></div>
-                            <div class="col-md-12 mt-2"><label class="labels">State <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="state" placeholder="Enter State name" value="" required></div>
+                            <div class="col-md-12 mt-2"><label class="labels">Pincode <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="pincode" minlength="6" maxlength="6" placeholder="Enter Pincode" value="<?php echo $row_profile[3] ?>" required></div>
+                            <div class="col-md-12 mt-2"><label class="labels">State <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000; opacity:70%;"></i></label><input type="text" class="form-control" name="state" placeholder="Enter State name" value="<?php echo $row_profile[2] ?>" required></div>
                             <div class="col-md-12 mt-2"><label class="labels">Email ID</label><input type="text" class="form-control" name="email" placeholder="Enter Email I'd" value="<?php echo $email; ?>" disabled></div>
                         </div>
                         <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="update_btn">Update Profile</button></div>

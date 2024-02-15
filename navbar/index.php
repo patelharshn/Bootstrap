@@ -27,7 +27,7 @@
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Inventory Management System</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div class="offcanvas-body" style="font-size: 20px;">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="http://localhost/bootstrap/index.php"><i class="fa-solid fa-house"></i> Home</a>
@@ -50,7 +50,7 @@
                                 <i class="fa-solid fa-circle-info"></i> More
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user" style="color: #000000;"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="./profile/index.php"><i class="fa-solid fa-user" style="color: #000000;"></i> Profile</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-address-card"></i> About Us</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-address-book"></i> Contact Us</a></li>
                             </ul>
@@ -65,6 +65,7 @@
             </div>
         </div>
     </nav>
+
     <!-- End Navbar -->
 
     <!-- Script CDN Bootstrap -->
